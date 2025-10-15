@@ -25,8 +25,9 @@ Data are loaded in the notebook (via `gdown`/CSV or from a small `sqlite3` demo)
 ## 🎯 Experiment Design
 
 - **Objective:** Does moving the first “gate” from level 30 → 40 improve engagement/retention?
-- **Primary metrics:** `retention_1` (Day‑1) and `retention_7` (Day‑7)
-- **Secondary metric:** `sum_gamerounds` (engagement proxy)
+- **Primary metrics:** Binary indicators`retention_1` (Day‑1) and `retention_7` (Day‑7)
+- **Secondary metric:** `sum_gamerounds` - Total gameplay rounds
+- **Composite Metric:** Combined Day1 and Day7 rentention
 - **Hypotheses (for retention):**
   - H0: p_A = p_B
   - H1: p_A ≠ p_B (two‑sided)
