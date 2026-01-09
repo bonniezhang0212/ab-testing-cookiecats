@@ -1,0 +1,240 @@
+## TL;DR
+
+- Designed and analyzed a controlled A/B experiment on early-game progression gating
+- Variant (Gate at Level 40) caused \~5% D7 retention drop with no meaningful revenue upside
+- Final decision: ❌ Not rolled out to production
+
+---
+
+# Empowering User Experience
+
+## Optimizing Product Recommendations through A/B Testing
+
+---
+
+## 1. Project at a Glance
+
+| Item                  | Description                       |
+| --------------------- | --------------------------------- |
+| **Domain**            | Mobile Games                      |
+| **Methodology**       | Controlled A/B Experiment         |
+| **Primary Metrics**   | D1 Retention, D7 Retention        |
+| **Secondary Metrics** | Conversion Rate, Revenue per User |
+| **Decision Type**     | Statistical Go / No-Go            |
+| **Final Outcome**     | ❌ Gate 40 not recommended         |
+
+> **Role perspective**: Data Scientist / Product Analyst responsible for experiment design, metric definition, analysis, and recommendation.
+
+\---|---| | **Domain** | Mobile Games | | **Method** | A/B Testing | | **Focus Metric** | User Retention (D1 / D7) | | **Decision Type** | Go / No-Go | | **Outcome** | ❌ Gate 40 not recommended |
+
+---
+
+## 2. Background & Motivation
+
+### Problem Statement (Before Optimization)
+
+```mermaid
+flowchart LR
+A[New User Enters Game]
+B[Early Progression]
+C[First Progression Gate]
+D[User Friction]
+E[Drop in Retention]
+
+A --> B --> C --> D --> E
+```
+
+**Progression gates** are commonly used to control pacing and monetization. However, poorly placed gates can introduce excessive friction and harm retention.
+
+---
+
+## 3. Experiment Design
+
+### Hypothesis
+
+> Moving the **first progression gate** earlier (Gate 40) will increase early engagement and monetization **without harming retention**.
+
+### Variants
+
+| Group   | Description             |
+| ------- | ----------------------- |
+| Control | Original gate placement |
+| Variant | Gate moved to level 40  |
+
+---
+
+## 4. Experiment Design (Data Scientist View)
+
+### 4.1 Setup
+
+| Item                | Description                |
+| ------------------- | -------------------------- |
+| Randomization Unit  | User-level                 |
+| Allocation          | 50% Control / 50% Variant  |
+| Experiment Duration | 14 days                    |
+| Sample Size         | \~100k users (anonymized)  |
+| Guardrail Metrics   | Crash rate, session length |
+
+```mermaid
+flowchart TD
+U[Eligible New Users]
+U --> R[Random Assignment]
+R --> C[Control: Original Gate]
+R --> V[Variant: Gate at Level 40]
+C --> M1[Track Retention & Revenue]
+V --> M2[Track Retention & Revenue]
+M1 --> A[Statistical Comparison]
+M2 --> A
+```
+
+---
+
+## 5. Key Metrics
+
+| Metric          | Why It Matters           |
+| --------------- | ------------------------ |
+| D1 Retention    | Early engagement quality |
+| D7 Retention    | Long-term value signal   |
+| Conversion Rate | Monetization impact      |
+
+---
+
+## 6. Results Summary
+
+### 6.1 Retention Curves (Synthetic Data for Illustration)
+
+> The following figures represent **synthetic but realistic data**, used to demonstrate analytical reasoning and communication.
+
+**Figure 1. D1–D7 Retention Curve (Control vs Variant)**
+
+| Day | Control | Gate 40 |
+| --- | ------- | ------- |
+| D1  | 38%     | 37%     |
+| D2  | 30%     | 28%     |
+| D3  | 26%     | 23%     |
+| D5  | 21%     | 18%     |
+| D7  | 18%     | **13%** |
+
+**Interpretation**:
+
+- Retention gap widens over time
+- Indicates compounding early-game friction
+
+---
+
+### 6.2 Aggregated Metric Comparison
+
+**Figure 2. Key Metric Summary (Synthetic)**
+
+| Metric          | Control | Gate 40 | Relative Change |
+| --------------- | ------- | ------- | --------------- |
+| D1 Retention    | 38%     | 37%     | -2.6%           |
+| D7 Retention    | 18%     | 13%     | **-27.8%**      |
+| Conversion Rate | 4.2%    | 4.3%    | +2.4%           |
+| ARPU            | \$1.00  | \$1.02  | +2%             |
+
+> Small monetization lift does **not compensate** for retention loss.
+
+\---|---|---|---| | D1 Retention | Baseline | Slight ↓ | - | | D7 Retention | Baseline | **\~5% ↓** | ❌ | | Conversion Rate | Baseline | Marginal ↑ | Insignificant |
+
+---
+
+### 6.3 Statistical Interpretation (Analyst View)
+
+```mermaid
+flowchart LR
+A[Observed Retention Drop]
+B[Check Sample Size & Variance]
+C[Statistical Significance]
+D[Effect Size Meaningful]
+E[Negative Product Impact]
+
+A --> B --> C --> D --> E
+```
+
+- Retention decline is **directionally consistent across cohorts**
+- Effect size at D7 is **material at scale**
+- Monetization uplift does **not offset retention loss**
+
+\---|---|---|---| | D1 Retention | Baseline | Slight ↓ | - | | D7 Retention | Baseline | **\~5% ↓** | ❌ |
+
+### Interpretation
+
+```mermaid
+flowchart LR
+A[Earlier Gate]
+B[Higher Friction]
+C[Lower User Motivation]
+D[Retention Drop]
+
+A --> B --> C --> D
+```
+
+---
+
+## 7. Business Impact
+
+| Area                | Impact      |
+| ------------------- | ----------- |
+| User Retention      | ❌ Negative  |
+| Revenue at Scale    | ❌ High Risk |
+| Design Assumptions  | Challenged  |
+| Decision Confidence | ✅ High      |
+
+---
+
+## 8. Final Recommendation
+
+```mermaid
+flowchart TB
+A[Analyze Results]
+B{Retention Impact Acceptable?}
+C[Ship Variant]
+D[Reject Variant]
+
+A --> B
+B -- Yes --> C
+B -- No --> D
+```
+
+### Decision
+
+❌ **Do NOT roll out Gate 40 configuration**
+
+From a long-term value perspective, the retention loss outweighs short-term monetization signals.
+
+---
+
+## 9. Key Takeaways (Data Scientist / Product Analyst Lens)
+
+- **Early-game friction is a dominant driver of long-term retention**
+- Optimizing monetization mechanics without cohort-level retention analysis is risky
+- A/B testing is as much about **falsifying assumptions** as it is about finding wins
+- Small percentage changes (≈5% D7) translate to **large absolute impact** at scale
+
+---
+
+## 10. What This Project Demonstrates (GitHub-Oriented)
+
+- End-to-end experiment ownership: design → analysis → decision
+- Retention-focused evaluation beyond surface-level metric lifts
+- Ability to say **no** to product changes backed by data
+- Clear communication of trade-offs to product stakeholders
+
+---
+
+## 11. Possible Next Experiments
+
+```mermaid
+flowchart TB
+A[Rejected Gate 40]
+B[Test Later Gate]
+C[Adaptive / Soft Gate]
+D[Cohort-based Personalization]
+
+A --> B --> C --> D
+```
+
+- Explore later or softer progression constraints
+- Segment by skill, tenure, or early engagement
+- Optimize monetization **without degrading retention**
