@@ -1,4 +1,4 @@
-# ab-testing-cookiecats
+# ab-testing-MobileGame
 
 This project analyzes an A/B test from a mobile game (Cookie Cats) to evaluate whether **moving the first gate from level 30 to level 40** affects player engagement and retention. The notebook walks through data loading, EDA, statistical testing (proportions and means), and two complementary inference approaches: **delta (two‑proportion z‑test)** and **bootstrap**.
 
